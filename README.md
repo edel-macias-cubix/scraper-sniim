@@ -105,6 +105,11 @@ Para ejecutar el scraper en una instancia Docker correr el siguiente comando:
 docker run --name sniim -e HISTORIAL=true -e MONGO_HOST=172.17.0.2 -e MONGO_PORT=27017 -e MONGO_DATABASE=central -e MONGO_USER=central -e MONGO_PASSWORD=secret -d mxabierto/scrapper-sniim
 ```
 
+Para ejecutar el scraper junto con una instancia de MongoDB configurada automaticamente, ejecuta el siguiente comando:
+```sh
+docker compose up -d
+```
+
 ### Configuración
 
 Para configurar la conectividad con el servidor Mongo y modo de ejecución se necesita configurar el scraper con las siguientes variables de entorno:
@@ -115,3 +120,4 @@ Para configurar la conectividad con el servidor Mongo y modo de ejecución se ne
 - **MONGO_USER**: Usuario de conexion al servidor mongo.
 - **MONGO_PASSWORD**: Password para el usuario de conexion al servidor mongo.
 - **MONGO_DATABASE**: Nombre de la base de datos en el servidor mongo.
+- **CONNECT_WITH_USER**: Bandera para permitir la conexión a MongoDB sin autenticación. Desactivado por defecto.
