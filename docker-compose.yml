@@ -1,0 +1,31 @@
+services:
+  mongo:
+    image: mongo:latest
+    container_name: mongo
+    environment:
+      MONGO_INITDB_DATABASE: "central"
+      MONGO_INITDB_ROOT_USERNAME: "root"
+      MONGO_INITDB_ROOT_PASSWORD: "changeme"
+    volumes:
+      - ./init-mongo.js:/docker-entrypoint-initdb.d/init-mongo.js:ro
+      - mongo_data:/data/db
+    ports:
+      - "27017:27017"
+
+  sniim:
+    build: .
+    container_name: sniim
+    environment:
+      HISTORIAL: "true"
+      MONGO_HOST: "mongo"
+      MONGO_PORT: "27017"
+      MONGO_DATABASE: "central"
+      MONGO_USER: "scrapper"
+      MONGO_PASSWORD: "password"
+      CONNECT_WITH_USER: "True"
+    depends_on:
+      - mongo
+    restart: always
+
+volumes:
+  mongo_data:

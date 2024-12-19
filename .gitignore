@@ -2,3 +2,6 @@ build/
 dist/
 sniim.egg-info
 *.pyc
+.idea/
+.venv
+venv
